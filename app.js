@@ -1,6 +1,5 @@
-let constant = "./config/config.dev.js";
-process.config.global_config = require(constant);
-// process.config.global_config.aws_ses_config = require("./config/aws.ses.config.json");
+
+
 
 const express = require('express');
 const bodyparser = require('body-parser');
