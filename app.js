@@ -25,7 +25,7 @@ app.use( express.static(path.join(__dirname, 'dist')));
 
 
 
-const port = process.env.PORT || process.config.global_config.server.port;
+const port = 3000 ;
 let server = app.listen(port, () => {
     console.log('App is listing at port  :' + port)
 });
