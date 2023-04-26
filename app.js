@@ -35,55 +35,55 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // app.use(responseHandler.onSuccess);
 
-let stripeWebhookUrl = "/api/stripe/webhook";
-app.use((req, res, next) => {
-    if (req.url.startsWith(stripeWebhookUrl)) {
-        next();
-    } else {
-        bodyparser.urlencoded({ limit: '50mb', extended: true })(req, res, next);
-    }
-});
+// let stripeWebhookUrl = "/api/stripe/webhook";
+// app.use((req, res, next) => {
+//     if (req.url.startsWith(stripeWebhookUrl)) {
+//         next();
+//     } else {
+//         bodyparser.urlencoded({ limit: '50mb', extended: true })(req, res, next);
+//     }
+// });
 
-app.use((req, res, next) => {
-    if (req.url.startsWith(stripeWebhookUrl)) {
-        bodyparser.raw({ type: 'application/json' })(req, res, next)
-    } else {
-        bodyparser.json({ limit: '50mb' })(req, res, next);
-    }
-});
+// app.use((req, res, next) => {
+//     if (req.url.startsWith(stripeWebhookUrl)) {
+//         bodyparser.raw({ type: 'application/json' })(req, res, next)
+//     } else {
+//         bodyparser.json({ limit: '50mb' })(req, res, next);
+//     }
+// });
 
-const docOptions = {
-    definition: {
-        openapi: '3.0.0',
-        info: {
-            title: 'School Management',
-            version: '1',
-        },
-        servers: [{
-            url: process.config.global_config.base_url,
-            description: 'Development server',
-        }],
-        components: {
-            securitySchemes: {
-                ApiKeyAuth: {
-                    type: "apiKey",
-                    in: "header",
-                    name: "x-auth-token"
-                }
-            }
-        },
-        security: [{
-            ApiKeyAuth: []
-        }]
-    },
-    apis: ['./modules/controllers/user/*.js', './modules/controllers/super_user/*.js'],
-};
-const swaggerSpec = swaggerJSDoc(docOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-/*app.use(bodyparser.urlencoded({
-    limit: '50mb',
-    extended: true,
-}));
+// const docOptions = {
+//     definition: {
+//         openapi: '3.0.0',
+//         info: {
+//             title: 'School Management',
+//             version: '1',
+//         },
+//         servers: [{
+//             url: process.config.global_config.base_url,
+//             description: 'Development server',
+//         }],
+//         components: {
+//             securitySchemes: {
+//                 ApiKeyAuth: {
+//                     type: "apiKey",
+//                     in: "header",
+//                     name: "x-auth-token"
+//                 }
+//             }
+//         },
+//         security: [{
+//             ApiKeyAuth: []
+//         }]
+//     },
+//     apis: ['./modules/controllers/user/*.js', './modules/controllers/super_user/*.js'],
+// };
+// const swaggerSpec = swaggerJSDoc(docOptions);
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// /*app.use(bodyparser.urlencoded({
+//     limit: '50mb',
+//     extended: true,
+// }));
 app.use(bodyparser.json());
 */
 require('./routes')(app);
