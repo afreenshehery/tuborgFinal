@@ -85,7 +85,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 //     extended: true,
 // }));
 app.use(bodyparser.json());
-*/
+
 require('./routes')(app);
 app.use("/", (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"));
