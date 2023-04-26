@@ -1,6 +1,6 @@
 'use strict';
-let MongooseObj = require("mongoose").Mongoose,
-    config   = process.config.global_config.setup_information_mongodb;
+let MongooseObj = require("mongoose").Mongoose;
+//     config   = process.config.global_config.setup_information_mongodb;
 
 let mongoose = new MongooseObj();
 
